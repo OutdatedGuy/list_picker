@@ -6,7 +6,7 @@ list_picker helps you to select an item from a list of items using dialog box wi
 - You can also customize `showDialog` and its `builder` method with `ListPickerDialog` widget.
 - Or you can call the `showPickerDialog` function on your custom widget.
 
-![demo](./assets/gif/demo.gif)
+![demo](https://user-images.githubusercontent.com/74326345/159289415-25f263a2-6ba3-40fd-ad12-17c38e2bcf28.gif)
 
 ## Getting started
 
