@@ -1,3 +1,5 @@
 ## 0.0.1
 
-- Initial release.
+- ListPickerField widget added
+- ListPickerDialog widget added
+- showPickerDialog function added
