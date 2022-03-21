@@ -42,59 +42,50 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
   Widget build(BuildContext context) {
     final textColor = Theme.of(context).textTheme.bodyLarge?.color;
 
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: Colors.transparent,
-        child: AlertDialog(
-          scrollable: true,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          title: Text('Select ${widget.label}'),
-          content: SizedBox(
-            height: 450.0,
-            width: 320.0,
-            child: Column(
-              children: [
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Select ${widget.label}',
-                    hintStyle: Theme.of(context).textTheme.bodyText2,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    focusedBorder: myBorderTheme(textColor, 2.0),
-                    enabledBorder: myBorderTheme(textColor, 1.0),
-                  ),
-                  cursorColor: Theme.of(context).textTheme.bodyLarge?.color,
-                  onChanged: _onSearchChanged,
-                  onSubmitted: _onSearchChanged,
+    return AlertDialog(
+      scrollable: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      title: Text('Select ${widget.label}'),
+      content: SizedBox(
+        height: 450.0,
+        width: 320.0,
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Select ${widget.label}',
+                hintStyle: Theme.of(context).textTheme.bodyText2,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
-                const Divider(),
-                SizedBox(
-                  height: 350.0,
-                  child: ListView(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(0.0),
-                    children: searchList.map((item) {
-                      return ListTile(
-                        title: Text(item),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 10.0,
-                          vertical: 0.0,
-                        ),
-                        onTap: () => Navigator.of(context).pop(item),
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ],
+                focusedBorder: myBorderTheme(textColor, 2.0),
+                enabledBorder: myBorderTheme(textColor, 1.0),
+              ),
+              cursorColor: Theme.of(context).textTheme.bodyLarge?.color,
+              onChanged: _onSearchChanged,
+              onSubmitted: _onSearchChanged,
             ),
-          ),
+            const Divider(),
+            SizedBox(
+              height: 350.0,
+              child: ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(0.0),
+                children: searchList.map((item) {
+                  return ListTile(
+                    title: Text(item),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 10.0,
+                      vertical: 0.0,
+                    ),
+                    onTap: () => Navigator.of(context).pop(item),
+                  );
+                }).toList(),
+              ),
+            ),
+          ],
         ),
       ),
     );
