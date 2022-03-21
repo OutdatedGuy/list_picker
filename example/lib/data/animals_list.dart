@@ -1,4 +1,3 @@
-// list of 20 animals
 const animals = [
   "Aardvark",
   "Albatross",
