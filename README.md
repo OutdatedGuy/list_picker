@@ -3,6 +3,7 @@ list_picker helps you to select an item from a list of items using dialog box wi
 ## Features
 
 - `ListPickerField` provides a text field which when tapped opens the dialog box to select item from the given list.
+- You can also customize `showDialog` and its `builder` method with `ListPickerDialog` widget.
 - Or you can call the `showPickerDialog` function on your custom widget.
 
 ![demo](./assets/gif/demo.gif)
