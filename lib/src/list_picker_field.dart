@@ -60,6 +60,9 @@ class ListPickerField extends StatelessWidget {
         readOnly: true,
         controller: _controller,
         onTap: () async {
+          // Remove focus from the field.
+          FocusScope.of(context).requestFocus(FocusNode());
+
           String? selectedValue = await showDialog(
             context: context,
             builder: (context) => ListPickerDialog(
