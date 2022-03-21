@@ -10,7 +10,7 @@ import 'list_picker_dialog.dart';
 /// The [ListPickerField] is a [TextField] that opens a [ListPickerDialog] when tapped.
 ///
 /// The [ListPickerField] can be used to select a value from a provided list.
-class ListPickerField extends StatefulWidget {
+class ListPickerField extends StatelessWidget {
   /// Label for the field.
   final String label;
 
@@ -48,12 +48,7 @@ class ListPickerField extends StatefulWidget {
 
   /// To check if field is empty.
   bool get empty => _controller.text.isEmpty;
-
-  @override
-  _ListPickerFieldState createState() => _ListPickerFieldState();
-}
-
-class _ListPickerFieldState extends State<ListPickerField> {
+  
   @override
   Widget build(BuildContext context) {
     final textColor = Theme.of(context).textTheme.bodyLarge?.color;
@@ -63,25 +58,25 @@ class _ListPickerFieldState extends State<ListPickerField> {
       margin: const EdgeInsets.symmetric(vertical: 15.0),
       child: TextField(
         readOnly: true,
-        controller: widget._controller,
+        controller: _controller,
         onTap: () async {
           String? selectedValue = await showDialog(
             context: context,
             builder: (context) => ListPickerDialog(
-              label: widget.label,
-              items: widget.items,
+              label: label,
+              items: items,
             ),
           );
 
           if (selectedValue != null) {
-            widget._controller.text = selectedValue;
+            _controller.text = selectedValue;
           }
         },
         cursorColor: textColor,
         decoration: InputDecoration(
-          labelText: widget.label + (widget.isRequired ? "*" : ""),
+          labelText: label + (isRequired ? "*" : ""),
           labelStyle: Theme.of(context).textTheme.labelLarge,
-          suffixIcon: widget.showDropdownIcon
+          suffixIcon: showDropdownIcon
               ? Icon(Icons.arrow_drop_down, color: textColor)
               : null,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
