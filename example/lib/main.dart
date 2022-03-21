@@ -74,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                       backgroundColor: Colors.amber,
+                      foregroundColor: Colors.black,
                     ),
                     body: const ListPickerDialog(
                       label: "Sport",
