@@ -17,6 +17,9 @@ class ListPickerField extends StatelessWidget {
   /// Items to be displayed in the picker dialog.
   final List<String> items;
 
+  /// Controller for the field.
+  final TextEditingController? controller;
+
   /// The initial value of the field.
   final String? initialValue;
 
@@ -34,21 +37,21 @@ class ListPickerField extends StatelessWidget {
     Key? key,
     required this.label,
     required this.items,
+    this.controller,
     this.initialValue,
     this.isRequired = false,
     this.showDropdownIcon = true,
-  }) : super(key: key);
+  })  : _controller = controller ?? TextEditingController(text: initialValue),
+        super(key: key);
 
-  late final _controller = TextEditingController(
-    text: initialValue,
-  );
+  final TextEditingController _controller;
 
   /// The selected value of the field.
   String get value => _controller.text;
 
   /// To check if field is empty.
   bool get empty => _controller.text.isEmpty;
-  
+
   @override
   Widget build(BuildContext context) {
     final textColor = Theme.of(context).textTheme.bodyLarge?.color;
