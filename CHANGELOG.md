@@ -1,3 +1,11 @@
+## 0.0.4
+
+- new: Changed mouse shape when hovered on textfield
+- feat: Added width, padding and margin properties for ListPickerField
+- feat: Added width and height properties for ListPickerDialog
+- fix: InitialValue not shown when custom controller passed
+- docs: added proper dartDoc comments
+
 ## 0.0.3
 
 - Added proper package description
