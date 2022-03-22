@@ -1,3 +1,7 @@
+## 0.0.3
+
+- Added proper package description
+
 ## 0.0.2
 
 - Fixed broken demo gif link
