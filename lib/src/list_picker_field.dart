@@ -62,6 +62,7 @@ class ListPickerField extends StatelessWidget {
       child: TextField(
         readOnly: true,
         controller: _controller,
+        mouseCursor: MaterialStateMouseCursor.clickable,
         onTap: () async {
           // Remove focus from the field.
           FocusScope.of(context).requestFocus(FocusNode());
