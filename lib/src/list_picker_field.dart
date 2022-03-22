@@ -18,31 +18,40 @@ class ListPickerField extends StatelessWidget {
   final List<String> items;
 
   /// Controller for the field.
+  ///
+  /// If not provided, a [TextEditingController] will be created.
   final TextEditingController? controller;
 
   /// The initial value of the field.
   final String? initialValue;
 
-  /// If true, '*' will be displayed after [label].
+  /// If `true`, `*` will be displayed after [label].
   ///
-  /// Defaults to false
+  /// Defaults to `false`
   final bool isRequired;
 
   /// If true, a dropdown arrow will be displayed at the end of the field.
   ///
-  /// Defaults to true.
+  /// Defaults to `true`.
   final bool showDropdownIcon;
 
   /// Width of the [TextField].
   final double? width;
 
   /// Padding for the [TextField].
-  /// Defaults to EdgeInsets.all(8.0).
+  ///
+  /// Defaults to `EdgeInsets.all(8.0)`.
   final EdgeInsetsGeometry padding;
 
   /// Margin for the [TextField].
   final EdgeInsetsGeometry? margin;
 
+  /// Creates a Widget that displays a [TextField] with a [ListPickerDialog] popup when tapped.
+  ///
+  /// The [ListPickerField] can be used to select a value from a provided list.
+  ///
+  /// - `value` getter returns the selected value.
+  /// - `empty` getter returns `true` if the field is empty.
   ListPickerField({
     Key? key,
     required this.label,
@@ -57,6 +66,9 @@ class ListPickerField extends StatelessWidget {
   })  : _controller = controller ?? TextEditingController(text: initialValue),
         super(key: key);
 
+  /// The controller used for the [TextField].
+  ///
+  /// Can be user provided or created internally.
   final TextEditingController _controller;
 
   /// The selected value of the field.

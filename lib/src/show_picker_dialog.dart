@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'list_picker_dialog.dart';
 
 /// Opens the [ListPickerDialog] and returns the selected value.
+///
+/// `null` is returned if the dialog is closed without selecting a value.
 Future<String?> showPickerDialog({
   required BuildContext context,
   required String label,
