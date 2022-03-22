@@ -33,6 +33,16 @@ class ListPickerField extends StatelessWidget {
   /// Defaults to true.
   final bool showDropdownIcon;
 
+  /// Width of the [TextField].
+  final double? width;
+
+  /// Padding for the [TextField].
+  /// Defaults to EdgeInsets.all(8.0).
+  final EdgeInsetsGeometry padding;
+
+  /// Margin for the [TextField].
+  final EdgeInsetsGeometry? margin;
+
   ListPickerField({
     Key? key,
     required this.label,
@@ -41,6 +51,9 @@ class ListPickerField extends StatelessWidget {
     this.initialValue,
     this.isRequired = false,
     this.showDropdownIcon = true,
+    this.width,
+    this.padding = const EdgeInsets.all(8.0),
+    this.margin,
   })  : _controller = controller ?? TextEditingController(text: initialValue),
         super(key: key);
 
@@ -58,7 +71,9 @@ class ListPickerField extends StatelessWidget {
     final errorColor = Theme.of(context).errorColor;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 15.0),
+      width: width,
+      padding: padding,
+      margin: margin,
       child: TextField(
         readOnly: true,
         controller: _controller,
