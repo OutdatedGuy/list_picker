@@ -63,7 +63,11 @@ class ListPickerField extends StatelessWidget {
     this.width,
     this.padding = const EdgeInsets.all(8.0),
     this.margin,
-  })  : _controller = controller ?? TextEditingController(text: initialValue),
+  })  : assert(
+          controller == null || initialValue == null,
+          'Cannot provide both initialValue and controller.',
+        ),
+        _controller = controller ?? TextEditingController(text: initialValue),
         super(key: key);
 
   /// The controller used for the [TextField].
