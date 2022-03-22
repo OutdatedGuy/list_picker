@@ -16,11 +16,34 @@ class ListPickerDialog extends StatefulWidget {
   /// Items to be displayed as [ListView] in the dialog.
   final List<String> items;
 
+  /// Width of the dialog window.
+  ///
+  /// Defaults to `320.0`.
+  final double width;
+
+  /// Height of the dialog window.
+  ///
+  /// Defaults to `450.0`.
+  final double height;
+
+  /// Creates a dialog widget to be used in [showDialog] method.
+  ///
+  /// Dialog contains a search bar and a [ListView] of items.
+  ///
+  /// Selected item is returned as [Future] using [Navigator.pop].
   const ListPickerDialog({
     Key? key,
     required this.label,
     required this.items,
-  }) : super(key: key);
+    this.width = 320.0,
+    this.height = 450.0,
+  })  : _scrollableHeight = (height - 100.0),
+        super(key: key);
+
+  /// Scrollable height of the dialog window.
+  ///
+  /// Defaults to `height - 100.0`.
+  final double? _scrollableHeight;
 
   @override
   State<ListPickerDialog> createState() => _ListPickerDialogState();
@@ -49,8 +72,8 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
       ),
       title: Text('Select ${widget.label}'),
       content: SizedBox(
-        height: 450.0,
-        width: 320.0,
+        width: widget.width,
+        height: widget.height,
         child: Column(
           children: [
             TextField(
@@ -69,7 +92,7 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
             ),
             const Divider(),
             SizedBox(
-              height: 350.0,
+              height: widget._scrollableHeight,
               child: ListView(
                 shrinkWrap: true,
                 padding: const EdgeInsets.all(0.0),
