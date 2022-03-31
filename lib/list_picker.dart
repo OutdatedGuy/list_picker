@@ -11,6 +11,6 @@
 
 library list_picker;
 
-export 'src/list_picker_field.dart';
 export 'src/list_picker_dialog.dart';
+export 'src/list_picker_field.dart';
 export 'src/show_picker_dialog.dart';

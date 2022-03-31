@@ -37,7 +37,7 @@ class ListPickerDialog extends StatefulWidget {
     required this.items,
     this.width = 320.0,
     this.height = 450.0,
-  })  : _scrollableHeight = (height - 100.0),
+  })  : _scrollableHeight = height - 100.0,
         super(key: key);
 
   /// Scrollable height of the dialog window.
@@ -56,14 +56,14 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
     value = value.toLowerCase().trim();
     setState(() {
       searchList = widget.items
-          .where((item) => item.toLowerCase().contains(value))
+          .where((String item) => item.toLowerCase().contains(value))
           .toList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final textColor = Theme.of(context).textTheme.bodyLarge?.color;
+    final Color? textColor = Theme.of(context).textTheme.bodyLarge?.color;
 
     return AlertDialog(
       scrollable: true,
@@ -75,7 +75,7 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
         width: widget.width,
         height: widget.height,
         child: Column(
-          children: [
+          children: <Widget>[
             TextField(
               decoration: InputDecoration(
                 hintText: 'Search ${widget.label}',
@@ -95,13 +95,12 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
               height: widget._scrollableHeight,
               child: ListView(
                 shrinkWrap: true,
-                padding: const EdgeInsets.all(0.0),
-                children: searchList.map((item) {
+                padding: EdgeInsets.zero,
+                children: searchList.map((String item) {
                   return ListTile(
                     title: Text(item),
                     contentPadding: const EdgeInsets.symmetric(
                       horizontal: 10.0,
-                      vertical: 0.0,
                     ),
                     onTap: () => Navigator.of(context).pop(item),
                   );

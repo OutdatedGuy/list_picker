@@ -83,8 +83,8 @@ class ListPickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = Theme.of(context).textTheme.bodyLarge?.color;
-    final errorColor = Theme.of(context).errorColor;
+    final Color? textColor = Theme.of(context).textTheme.bodyLarge?.color;
+    final Color errorColor = Theme.of(context).errorColor;
 
     return Container(
       width: width,
@@ -98,9 +98,9 @@ class ListPickerField extends StatelessWidget {
           // Remove focus from the field.
           FocusScope.of(context).requestFocus(FocusNode());
 
-          String? selectedValue = await showDialog(
+          final String? selectedValue = await showDialog(
             context: context,
-            builder: (context) => ListPickerDialog(
+            builder: (BuildContext context) => ListPickerDialog(
               label: label,
               items: items,
             ),
@@ -112,7 +112,7 @@ class ListPickerField extends StatelessWidget {
         },
         cursorColor: textColor,
         decoration: InputDecoration(
-          labelText: label + (isRequired ? "*" : ""),
+          labelText: label + (isRequired ? '*' : ''),
           labelStyle: Theme.of(context).textTheme.labelLarge,
           suffixIcon: showDropdownIcon
               ? Icon(Icons.arrow_drop_down, color: textColor)
