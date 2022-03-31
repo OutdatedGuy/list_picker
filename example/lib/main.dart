@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:list_picker/list_picker.dart';
 
 // List Data
+import 'data/animals_list.dart';
 import 'data/fruits_list.dart';
 import 'data/sports_list.dart';
-import 'data/animals_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,11 +34,11 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final fieldCont = TextEditingController();
+  final TextEditingController fieldCont = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +50,10 @@ class _MyHomePageState extends State<MyHomePage> {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             // Using the ListPickerField widget
             ListPickerField(
-              label: "Fruit",
+              label: 'Fruit',
               items: fruits,
               controller: fieldCont,
             ),
@@ -62,9 +62,9 @@ class _MyHomePageState extends State<MyHomePage> {
             // Using ListPickerDialog for custom dialog builder
             TextButton(
               onPressed: () async {
-                String? sport = await showDialog(
+                final String? sport = await showDialog(
                   context: context,
-                  builder: (context) => Scaffold(
+                  builder: (BuildContext context) => Scaffold(
                     backgroundColor: Colors.transparent,
                     appBar: AppBar(
                       title: const Text('List Picker Dialog'),
@@ -77,13 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       foregroundColor: Colors.black,
                     ),
                     body: const ListPickerDialog(
-                      label: "Sport",
+                      label: 'Sport',
                       items: sports,
                     ),
                   ),
                 );
 
-                if (sport != null) {
+                if (sport != null && mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(sport),
@@ -91,20 +91,20 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 }
               },
-              child: const Text("Custom Dialog Builder"),
+              child: const Text('Custom Dialog Builder'),
             ),
             const SizedBox(height: 16),
 
             // Using showPickerDialog for custom widget
             ElevatedButton(
               onPressed: () async {
-                String? animal = await showPickerDialog(
+                final String? animal = await showPickerDialog(
                   context: context,
-                  label: "Animal",
+                  label: 'Animal',
                   items: animals,
                 );
 
-                if (animal != null) {
+                if (animal != null && mounted) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(animal),
@@ -112,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 }
               },
-              child: const Text("Calling showPickerDialog()"),
+              child: const Text('Calling showPickerDialog()'),
             ),
           ],
         ),
