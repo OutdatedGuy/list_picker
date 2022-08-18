@@ -1,3 +1,9 @@
+## 1.0.0
+
+- **Updated LICENSE**
+- DOCS: updated homepage url
+- DOCS: added links and badges in readme
+
 ## 0.0.4
 
 - new: Changed mouse shape when hovered on textfield
