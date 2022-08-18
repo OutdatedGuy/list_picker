@@ -1,7 +1,7 @@
 name: list_picker
 description: A flutter package to pick an item from a list of given items using a dialog box with search functionality.
 version: 0.0.4
-homepage: https://outdatedguy.netlify.app
+homepage: https://outdatedguy.rocks
 repository: https://github.com/OutdatedGuy/list_picker
 
 environment:
