@@ -2,15 +2,41 @@
 import 'package:flutter/material.dart';
 
 // Themes
-import '../helpers/my_border_theme.dart';
+import 'package:list_picker/helpers/my_border_theme.dart';
 
 // Widgets
-import 'list_picker_dialog.dart';
+import 'package:list_picker/src/list_picker_dialog.dart';
 
-/// The [ListPickerField] is a [TextField] that opens a [ListPickerDialog] when tapped.
+/// The [ListPickerField] is a [TextField] that opens a [ListPickerDialog]
+/// when tapped.
 ///
 /// The [ListPickerField] can be used to select a value from a provided list.
 class ListPickerField extends StatelessWidget {
+  /// Creates a Widget that displays a [TextField] with a [ListPickerDialog]
+  /// popup when tapped.
+  ///
+  /// The [ListPickerField] can be used to select a value from a provided list.
+  ///
+  /// - `value` getter returns the selected value.
+  /// - `empty` getter returns `true` if the field is empty.
+  ListPickerField({
+    Key? key,
+    required this.label,
+    required this.items,
+    this.controller,
+    this.initialValue,
+    this.isRequired = false,
+    this.showDropdownIcon = true,
+    this.width,
+    this.padding = const EdgeInsets.all(8),
+    this.margin,
+  })  : assert(
+          controller == null || initialValue == null,
+          'Cannot provide both initialValue and controller.',
+        ),
+        _controller = controller ?? TextEditingController(text: initialValue),
+        super(key: key);
+
   /// Label for the field.
   final String label;
 
@@ -46,30 +72,6 @@ class ListPickerField extends StatelessWidget {
   /// Margin for the [TextField].
   final EdgeInsetsGeometry? margin;
 
-  /// Creates a Widget that displays a [TextField] with a [ListPickerDialog] popup when tapped.
-  ///
-  /// The [ListPickerField] can be used to select a value from a provided list.
-  ///
-  /// - `value` getter returns the selected value.
-  /// - `empty` getter returns `true` if the field is empty.
-  ListPickerField({
-    Key? key,
-    required this.label,
-    required this.items,
-    this.controller,
-    this.initialValue,
-    this.isRequired = false,
-    this.showDropdownIcon = true,
-    this.width,
-    this.padding = const EdgeInsets.all(8.0),
-    this.margin,
-  })  : assert(
-          controller == null || initialValue == null,
-          'Cannot provide both initialValue and controller.',
-        ),
-        _controller = controller ?? TextEditingController(text: initialValue),
-        super(key: key);
-
   /// The controller used for the [TextField].
   ///
   /// Can be user provided or created internally.
@@ -83,8 +85,8 @@ class ListPickerField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color? textColor = Theme.of(context).textTheme.bodyLarge?.color;
-    final Color errorColor = Theme.of(context).errorColor;
+    final textColor = Theme.of(context).textTheme.bodyLarge?.color;
+    final errorColor = Theme.of(context).errorColor;
 
     return Container(
       width: width,
@@ -98,7 +100,7 @@ class ListPickerField extends StatelessWidget {
           // Remove focus from the field.
           FocusScope.of(context).requestFocus(FocusNode());
 
-          final String? selectedValue = await showDialog(
+          final selectedValue = await showDialog<String>(
             context: context,
             builder: (BuildContext context) => ListPickerDialog(
               label: label,
@@ -117,11 +119,11 @@ class ListPickerField extends StatelessWidget {
           suffixIcon: showDropdownIcon
               ? Icon(Icons.arrow_drop_down, color: textColor)
               : null,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
-          focusedBorder: myBorderTheme(textColor, 2.0),
-          enabledBorder: myBorderTheme(textColor, 1.0),
-          errorBorder: myBorderTheme(errorColor, 1.0),
-          focusedErrorBorder: myBorderTheme(errorColor, 2.0),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+          focusedBorder: myBorderTheme(textColor, 2),
+          enabledBorder: myBorderTheme(textColor, 1),
+          errorBorder: myBorderTheme(errorColor, 1),
+          focusedErrorBorder: myBorderTheme(errorColor, 2),
         ),
       ),
     );

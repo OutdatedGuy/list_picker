@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Widgets
-import 'list_picker_dialog.dart';
+import 'package:list_picker/src/list_picker_dialog.dart';
 
 /// Opens the [ListPickerDialog] and returns the selected value.
 ///

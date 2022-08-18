@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 // Themes
-import '../helpers/my_border_theme.dart';
+import 'package:list_picker/helpers/my_border_theme.dart';
 
 /// A dialog that displays a list of items and lets the user select one.
 ///
@@ -10,6 +10,20 @@ import '../helpers/my_border_theme.dart';
 ///
 /// Must be used within [showDialog].
 class ListPickerDialog extends StatefulWidget {
+  /// Creates a dialog widget to be used in [showDialog] method.
+  ///
+  /// Dialog contains a search bar and a [ListView] of items.
+  ///
+  /// Selected item is returned as [Future] using [Navigator.pop].
+  const ListPickerDialog({
+    Key? key,
+    required this.label,
+    required this.items,
+    this.width = 320.0,
+    this.height = 450.0,
+  })  : _scrollableHeight = height - 100.0,
+        super(key: key);
+
   /// Label for title and search bar.
   final String label;
 
@@ -26,20 +40,6 @@ class ListPickerDialog extends StatefulWidget {
   /// Defaults to `450.0`.
   final double height;
 
-  /// Creates a dialog widget to be used in [showDialog] method.
-  ///
-  /// Dialog contains a search bar and a [ListView] of items.
-  ///
-  /// Selected item is returned as [Future] using [Navigator.pop].
-  const ListPickerDialog({
-    Key? key,
-    required this.label,
-    required this.items,
-    this.width = 320.0,
-    this.height = 450.0,
-  })  : _scrollableHeight = height - 100.0,
-        super(key: key);
-
   /// Scrollable height of the dialog window.
   ///
   /// Defaults to `height - 100.0`.
@@ -53,22 +53,22 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
   late List<String> searchList = widget.items;
 
   void _onSearchChanged(String value) {
-    value = value.toLowerCase().trim();
+    final searchValue = value.toLowerCase().trim();
     setState(() {
       searchList = widget.items
-          .where((String item) => item.toLowerCase().contains(value))
+          .where((String item) => item.toLowerCase().contains(searchValue))
           .toList();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final Color? textColor = Theme.of(context).textTheme.bodyLarge?.color;
+    final textColor = Theme.of(context).textTheme.bodyLarge?.color;
 
     return AlertDialog(
       scrollable: true,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(10),
       ),
       title: Text('Select ${widget.label}'),
       content: SizedBox(
@@ -81,10 +81,10 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
                 hintText: 'Search ${widget.label}',
                 hintStyle: Theme.of(context).textTheme.bodyText2,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                focusedBorder: myBorderTheme(textColor, 2.0),
-                enabledBorder: myBorderTheme(textColor, 1.0),
+                focusedBorder: myBorderTheme(textColor, 2),
+                enabledBorder: myBorderTheme(textColor, 1),
               ),
               cursorColor: Theme.of(context).textTheme.bodyLarge?.color,
               onChanged: _onSearchChanged,
@@ -100,7 +100,7 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
                   return ListTile(
                     title: Text(item),
                     contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 10.0,
+                      horizontal: 10,
                     ),
                     onTap: () => Navigator.of(context).pop(item),
                   );
