@@ -1,6 +1,3 @@
-// Use of this source code is governed by a MIT-style license that can be
-// found in the LICENSE file.
-
 /// Provides Widgets and Functions to select a value from a list.
 ///
 /// To use add the following code:
@@ -8,7 +5,6 @@
 /// ```dart
 /// import 'package:list_picker/list_picker.dart';
 /// ```
-
 library list_picker;
 
 export 'src/list_picker_dialog.dart';
