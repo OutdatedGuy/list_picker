@@ -1,3 +1,8 @@
+## 1.1.0
+
+- refactor: updated example app code for flutter 3.3
+- fix: replaced deprecated methods introduced in flutter 3.7
+
 ## 1.0.0
 
 - **Updated LICENSE**
