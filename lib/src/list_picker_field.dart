@@ -86,7 +86,7 @@ class ListPickerField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textColor = Theme.of(context).textTheme.bodyLarge?.color;
-    final errorColor = Theme.of(context).errorColor;
+    final errorColor = Theme.of(context).colorScheme.error;
 
     return Container(
       width: width,

@@ -79,7 +79,7 @@ class _ListPickerDialogState extends State<ListPickerDialog> {
             TextField(
               decoration: InputDecoration(
                 hintText: 'Search ${widget.label}',
-                hintStyle: Theme.of(context).textTheme.bodyText2,
+                hintStyle: Theme.of(context).textTheme.bodyMedium,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
