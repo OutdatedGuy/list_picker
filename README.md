@@ -23,7 +23,7 @@ list_picker helps you to select an item from a list of items using dialog box wi
 #### Add to Dependencies
 
 ```yaml
-list_picker: ^1.1.0
+list_picker: ^1.2.0
 ```
 
 #### Import the package
