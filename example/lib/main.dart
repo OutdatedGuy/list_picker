@@ -14,7 +14,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({super.key, required this.title});
 
   final String title;
 
@@ -61,61 +61,63 @@ class _MyHomePageState extends State<MyHomePage> {
 
             // Using ListPickerDialog for custom dialog builder
             TextButton(
-              onPressed: () async {
-                final String? sport = await showDialog(
-                  context: context,
-                  builder: (BuildContext context) => Scaffold(
-                    backgroundColor: Colors.transparent,
-                    appBar: AppBar(
-                      title: const Text('List Picker Dialog'),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                          bottom: Radius.circular(18),
-                        ),
-                      ),
-                      backgroundColor: Colors.amber,
-                      foregroundColor: Colors.black,
-                    ),
-                    body: const ListPickerDialog(
-                      label: 'Sport',
-                      items: sports,
-                    ),
-                  ),
-                );
-
-                if (sport != null && mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(sport),
-                    ),
-                  );
-                }
-              },
+              onPressed: _onCustomBuilderPressed,
               child: const Text('Custom Dialog Builder'),
             ),
             const SizedBox(height: 16),
 
             // Using showPickerDialog for custom widget
             ElevatedButton(
-              onPressed: () async {
-                final String? animal = await showPickerDialog(
-                  context: context,
-                  label: 'Animal',
-                  items: animals,
-                );
-
-                if (animal != null && mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(animal),
-                    ),
-                  );
-                }
-              },
+              onPressed: _onShowPickerDialogPressed,
               child: const Text('Calling showPickerDialog()'),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Future<void> _onCustomBuilderPressed() async {
+    final String? sport = await showDialog(
+      context: context,
+      builder: (BuildContext context) => Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          title: const Text('List Picker Dialog'),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(18),
+            ),
+          ),
+          backgroundColor: Colors.amber,
+          foregroundColor: Colors.black,
+        ),
+        body: const ListPickerDialog(
+          label: 'Sport',
+          items: sports,
+        ),
+      ),
+    );
+
+    if (sport == null || !mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(sport),
+      ),
+    );
+  }
+
+  Future<void> _onShowPickerDialogPressed() async {
+    final String? animal = await showPickerDialog(
+      context: context,
+      label: 'Animal',
+      items: animals,
+    );
+
+    if (animal == null || !mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(animal),
       ),
     );
   }
