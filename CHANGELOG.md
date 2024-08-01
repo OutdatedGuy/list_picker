@@ -1,3 +1,8 @@
+## 1.2.0
+
+- chore: updated template and dependencies to Flutter 3.22
+- refactor: updated sdk constraints to dart >=2.17
+
 ## 1.1.0
 
 - refactor: updated example app code for flutter 3.3
