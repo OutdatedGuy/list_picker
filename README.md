@@ -2,12 +2,11 @@
 
 list_picker helps you to select an item from a list of items using dialog box without having to write a lot of code.
 
-[![pub package][package_svg]](https://pub.dev/packages/list_picker)
+[![pub package][package_svg]][package]
 [![GitHub][license_svg]](LICENSE)
-[![style: very good analysis][lints_svg]](https://pub.dev/packages/very_good_analysis)
 
-[![GitHub issues][issues_svg]](https://github.com/OutdatedGuy/list_picker/issues)
-[![GitHub issues closed][issues_closed_svg]](https://github.com/OutdatedGuy/list_picker/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub issues][issues_svg]][issues]
+[![GitHub issues closed][issues_closed_svg]][issues_closed]
 
 <hr />
 
@@ -156,10 +155,18 @@ class ListPickerDialogDemo extends StatelessWidget {
 - value: returns the selected value
 - empty: returns true if no value is selected
 
+### If you liked the package, then please give it a [Like 👍🏼][package] and [Star ⭐][repository]
+
 <!-- Badges URLs -->
 
 [package_svg]: https://img.shields.io/pub/v/list_picker.svg?color=blueviolet
 [license_svg]: https://img.shields.io/github/license/OutdatedGuy/list_picker.svg?color=purple
-[lints_svg]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [issues_svg]: https://img.shields.io/github/issues/OutdatedGuy/list_picker.svg
 [issues_closed_svg]: https://img.shields.io/github/issues-closed/OutdatedGuy/list_picker.svg?color=green
+
+<!-- Links -->
+
+[package]: https://pub.dev/packages/list_picker
+[repository]: https://github.com/OutdatedGuy/list_picker
+[issues]: https://github.com/OutdatedGuy/list_picker/issues
+[issues_closed]: https://github.com/OutdatedGuy/list_picker/issues?q=is%3Aissue+is%3Aclosed
