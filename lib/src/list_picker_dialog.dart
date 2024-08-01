@@ -16,13 +16,12 @@ class ListPickerDialog extends StatefulWidget {
   ///
   /// Selected item is returned as [Future] using [Navigator.pop].
   const ListPickerDialog({
-    Key? key,
+    super.key,
     required this.label,
     required this.items,
     this.width = 320.0,
     this.height = 450.0,
-  })  : _scrollableHeight = height - 100.0,
-        super(key: key);
+  }) : _scrollableHeight = height - 100.0;
 
   /// Label for title and search bar.
   final String label;

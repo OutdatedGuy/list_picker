@@ -20,7 +20,7 @@ class ListPickerField extends StatelessWidget {
   /// - `value` getter returns the selected value.
   /// - `empty` getter returns `true` if the field is empty.
   ListPickerField({
-    Key? key,
+    super.key,
     required this.label,
     required this.items,
     this.controller,
@@ -34,8 +34,7 @@ class ListPickerField extends StatelessWidget {
           controller == null || initialValue == null,
           'Cannot provide both initialValue and controller.',
         ),
-        _controller = controller ?? TextEditingController(text: initialValue),
-        super(key: key);
+        _controller = controller ?? TextEditingController(text: initialValue);
 
   /// Label for the field.
   final String label;
